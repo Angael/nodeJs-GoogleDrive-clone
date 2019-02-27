@@ -1,0 +1,531 @@
+@import "variables";
+@import "item";
+
+:root {
+  --rowWidthNorm: 21rem;
+  --rowWidthPhone: 100%;
+}
+
+html,
+body {
+  margin: 0;
+  background: rgb(244, 244, 244);
+  color: black;
+  width: 100vw;
+  overflow: hidden;
+}
+
+* {
+  font-family: "Lato", sans-serif;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* TOP NAV */
+
+.topFixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: visible;
+  background-color: #333;
+  z-index: 4;
+}
+
+.topnavPadding {
+  width: 100%;
+  height: $navHeight + $toolboxHeight;
+}
+
+.topnav {
+  height: $navHeight;
+}
+
+// .createFolder {
+//   height: $navHeight;
+//   line-height: $navHeight;
+//   font-size: 1.2rem;
+//   float: right;
+//   text-align: center;
+//   padding: 0 1rem;
+//   text-decoration: none;
+//   color: rgb(255, 255, 255);
+//   background: #4caf50;
+//   /* border:solid 1px #333; */
+//   transition: 0.1s;
+//   cursor: pointer;
+// }
+
+// .createFolder:hover {
+//   background: rgb(255, 255, 255);
+//   color: rgb(0, 0, 0);
+// }
+
+// .createFolder i {
+//   height: $navHeight;
+//   vertical-align: middle;
+//   line-height: $navHeight;
+//   font-size: 2.5rem;
+// }
+
+.fileInputWrapper {
+  cursor: pointer;
+  input {
+    display: none;
+  }
+}
+
+/* TopToolbar */
+
+.topToolbar {
+  width: 100%;
+  background-color: #555;
+  height: $toolboxHeight;
+  z-index: 4;
+  .left {
+    float: left;
+  }
+  .right {
+    float: right;
+  }
+  button i {
+    font-size: $toolboxHeight;
+    transition: 0;
+  }
+  button {
+    color: #f1f1f1;
+    background-color: #555;
+    padding: 0 0.7rem;
+    transition: 0.2s;
+
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+    border: 0;
+    // font-size: 17px;
+  }
+  .displayTypeDropdown {
+    position: relative;
+    ul {
+      display: none;
+      position: absolute;
+      background: none;
+      padding: 0;
+      list-style: none;
+      margin: 0;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-gap: 0px;
+      left: -100%;
+    }
+    &:hover ul {
+      display: grid;
+    }
+  }
+  .displayTypeDropdown:hover button {
+    background-color: rgb(70, 70, 70);
+    color: rgb(206, 206, 206);
+  }
+  .displayTypeDropdown:hover ul button {
+    background-color: rgb(41, 41, 41);
+    color: rgb(141, 141, 141);
+  }
+  > button:hover,
+  .displayTypeDropdown ul button:hover {
+    color: white !important;
+    background-color: rgb(15, 15, 15) !important;
+  }
+}
+
+// /* Floating Grouped Options: Download Delete Deselect */
+
+// #floatingGroupOptions {
+//   position: fixed;
+//   right: 2rem;
+//   bottom: 2rem;
+//   padding: 0.5rem;
+//   border-radius: 20rem;
+//   height: 4rem;
+//   line-height: 4rem;
+//   background: #fff;
+//   border: solid 1px #333;
+//   z-index: 1;
+//   a {
+//   }
+//   i {
+//     /* We delete 2px because of margin top & bottom */
+//     line-height: calc(3rem - 2px);
+//     font-size: 2rem;
+//     width: 3rem;
+//     text-align: center;
+//     margin: 0 0.5rem;
+//     color: #333;
+//     background: rgba(250, 250, 250, 0.979);
+//     border: solid 1px rgba(0, 0, 0, 0.109);
+//     border-radius: 20rem;
+//     transition: 0.2s;
+//     float: left;
+//     &.icon {
+//       border: none;
+//       background: none;
+//       color: #ddd;
+//       font-size: 3rem;
+//       cursor: default;
+//       margin-left: 0;
+//     }
+//   }
+//   .spreader {
+//     height: 3rem;
+//     background: none;
+//     border-right: solid 1px black;
+//     float: left;
+//   }
+//   a {
+//     &.DownloadSelected i:hover {
+//       color: rgba(87, 216, 12, 1);
+//       border-color: rgba(87, 216, 12, 1);
+//     }
+//     &.DeleteSelected i:hover {
+//       color: rgba(255, 49, 18, 1);
+//       border-color: rgba(255, 49, 18, 1);
+//     }
+//     &.CancelSelected i {
+//       border: solid 1px transparent;
+//       background: none;
+//       color: #888;
+//       margin-right: 0;
+//     }
+//     i:hover {
+//       border: solid 1px rgba(0, 0, 0, 0.509);
+//     }
+//   }
+// }
+
+/* Directory path */
+
+#pathDirWrapper {
+  /* display:block; */
+  position: relative;
+  width: 100%;
+  height: 2.5rem;
+  background: rgba(250, 250, 250, 0.979);
+  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.171);
+  margin-bottom: 0.3rem;
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  align-content: center;
+  justify-content: center;
+}
+
+#pathDirText {
+  display: flex;
+  height: 2.5rem;
+  align-items: center;
+  word-break: break-all;
+  padding-left: 1rem;
+  overflow: hidden;
+}
+
+a#pathGoUp {
+  position: relative;
+  display: inline-block;
+  height: 2.5rem;
+  width: 5rem;
+  text-decoration: none;
+  border-right: solid 1px rgb(221, 221, 221);
+  color: #333;
+  transition: 0.2s;
+  /* background:#a5a5a5; */
+  &:active {
+    color: black;
+    background: white;
+  }
+  i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    vertical-align: middle;
+    font-size: 2.5rem;
+    transition: 0.2s;
+  }
+  &:hover i {
+    transform: translate(-90%, -50%);
+  }
+  &:active i {
+    transform: translate(-100%, -50%);
+  }
+  .buttonTooltipEnter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(100%, -50%);
+    opacity: 0;
+    transition: 0.2s;
+    font-weight: bold;
+  }
+  &:hover .buttonTooltipEnter {
+    transform: translate(20%, -50%);
+    opacity: 1;
+  }
+}
+
+/* Worked for centering and multiline, but backbutton isn't in one place
+  #pathDirWrapper{
+      display:block;
+      position:relative;
+      width:100%;
+      background:rgba(250, 250, 250, 0.979);
+      box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.171);
+      margin-bottom:0.3rem;
+      text-align: center;
+  }
+  
+  #pathDirText{
+      margin:0.3rem 1rem;
+      word-break: break-all;
+      display: inline-block;
+  }
+  a#pathGoUp{
+      text-decoration: none;
+      color:black;
+  }
+  #pathDirText i{
+      font-size: 2rem;
+      border:solid 1px rgb(31, 31, 31);
+      border-radius: 20rem;
+      margin:0 0.5rem;
+      vertical-align: middle;
+  }
+  */
+/* MODAL CREATE FOLDER */
+
+.modalBlackBG {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding-top: 5rem;
+  background: rgba(0, 0, 0, 0.329);
+  z-index: 5;
+  /* If works blur background */
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.modalWindow {
+  margin: auto;
+  max-width: 640px;
+  width: 100%;
+  padding: 13px 30px;
+  background: rgba(250, 250, 250, 0.979);
+  box-shadow: 0px 0px 80px 1px rgba(0, 0, 0, 0.75);
+  border-radius: 3px;
+  input,
+  h1 {
+  }
+}
+
+/* MODAL DOWNLOAD BAR */
+
+#folderDesiredName {
+  height: 3rem;
+  font-size: 1.9rem;
+  width: calc(100% - 3rem);
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  padding-left: 5px;
+  border: none;
+  /* box-shadow: inset 1px 1px 55px -6px rgba(0, 0, 0, 0.2); */
+  box-shadow: inset 1px 1px 41px -2px rgba(0, 0, 0, 0.2);
+  outline: none;
+  transition: 0.2s;
+  &:focus {
+    box-shadow: inset 0px 0px 4px 2px rgba(0, 162, 255, 0.5);
+  }
+}
+
+#folderButton {
+  width: 3rem;
+  height: 3rem;
+  font-size: 3rem;
+  vertical-align: middle;
+  float: right;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  background-color: #333;
+  color: #f1f1f1;
+  cursor: pointer;
+  transition: 0.2s;
+  &:hover {
+    transform: scale(1.1);
+    background: black;
+    color: white;
+  }
+}
+
+/* Progress bar at bottom of screen  */
+
+#modalProgressBarWindow {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  padding-top: 0rem;
+  width: 100%;
+}
+
+#progress-wrp {
+  position: relative;
+  height: 1.2rem;
+  text-align: left;
+  transition: 0.3s;
+  border-top: solid 1px #ddd;
+}
+
+#modalProgressBarWindow:hover #progress-wrp {
+  height: 2rem;
+}
+
+#progress-wrp {
+  .progress-bar {
+    height: 100%;
+    background-color: #7cca79;
+    width: 30%;
+    box-shadow: inset 1px 1px 10px rgba(0, 0, 0, 0.11);
+  }
+  .status {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    display: inline-block;
+    color: #000000;
+  }
+  .description {
+    display: block;
+    opacity: 0;
+    color: #538851;
+    position: absolute;
+    top: 0;
+    left: 1rem;
+    transform: translateY(0%);
+    transition: 0.3s;
+  }
+  &:hover .description {
+    display: block;
+    color: #333;
+    opacity: 1;
+    transform: translateY(-130%);
+  }
+}
+
+/* TODO: remove, dev classes */
+
+.debugGray {
+  background: gray !important;
+}
+
+.debugGreen {
+  background: green !important;
+}
+
+/* Dropzone upload library */
+
+body {
+  #dropzoneUploadOverlay {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    color: rgba(255, 255, 255, 0);
+    background: rgba(0, 0, 0, 0);
+    border: solid 0rem rgba(255, 255, 255, 0);
+    border-radius: 0.5rem;
+    z-index: 100;
+    transition: 0.3s;
+    font-size: 3.5rem;
+    text-align: center;
+    vertical-align: middle;
+    /* Center text inside */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &.dz-drag-hover #dropzoneUploadOverlay {
+    visibility: visible;
+    color: rgba(255, 255, 255, 1);
+    background: rgba(0, 0, 0, 0.7);
+    border: solid 0.5rem rgba(255, 255, 255, 1);
+  }
+}
+
+/*  */
+
+.drag-helper {
+  padding: 0.5rem;
+  background: rgba(0, 0, 0, 0.308);
+}
+
+.accountDropdown {
+  position: relative;
+  display: inline;
+  .accountBtn {
+    position: relative;
+    /* Fixes z-index problems with absolute positioning of .accountDropdownContext */
+    color: #f2f2f2;
+    background-color: rgb(4, 121, 0);
+    text-align: center;
+    padding: 0rem 1rem;
+    text-decoration: none;
+    font-size: 1rem;
+    height: 3rem;
+    line-height: 3rem;
+    border: none;
+    cursor: pointer;
+    transition: 0.1s;
+    z-index: 1;
+  }
+  &:hover .accountBtn {
+    background-color: rgb(4, 110, 0);
+    color: white;
+  }
+  .accountDropdownContext {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    transition: 0.15s;
+    width: 100%;
+    transform: translateY(-30%);
+    z-index: 0;
+  }
+  &:hover .accountDropdownContext {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.171);
+    transform: translateY(0%);
+  }
+}
+
+.accountDropdownContext button {
+  color: black;
+  background-color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  border: 0;
+  font-size: 17px;
+  &:hover {
+    color: black;
+    background-color: rgb(228, 228, 228);
+  }
+}

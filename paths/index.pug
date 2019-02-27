@@ -1,0 +1,238 @@
+html
+  head
+    link(href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet")
+    link(href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet")
+    //meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(rel='stylesheet', type='text/css', href='/main.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+    script(src='jquery-ui.min.js')
+    script(src='./js/long_tap_plugin.js')
+    //- Materialize: 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+ 
+    <link type="text/css" rel="stylesheet" href="./materialize/css/materialize.min.css"  media="screen,projection"/>
+    script(src='firebase.js')
+    script(src="http://beneposto.pl/jqueryrotate/js/jQueryRotateCompressed.js" async)
+    script(src='dropzone.bundle.js' defer)
+    //-script(src="auth.js" defer)
+  body 
+    //- |note: PostgreSQL password is "root"
+    //- Dropdown for display menu
+    ul#dropdown-displayTypes.dropdown-content
+      li
+        a(href='#!')
+          i.material-icons view_comfy
+          |Comfy View
+      li
+        a(href='#!')
+          i.material-icons list
+          |List
+      li
+        a(href='#!')
+          i.material-icons dashboard
+          |Collumns
+
+    //- .topnavPadding
+    nav.nav-extended.green.darken-1
+      .nav-wrapper
+        a.sidenav-trigger(href='#', data-target='slide-out')
+          i.material-icons menu
+        a.brand-logo.center(href='#') UpDownLoad
+        ul.hide-on-med-and-down
+          li
+            a(href="#")
+              i.material-icons.sidenav-trigger(data-target="slide-out") menu
+      .nav-content.green.lighten-2
+        button.btn-flat.waves-effect.dropdown-trigger(data-target="dropdown-displayTypes") Display Options
+
+    //- .topFixed
+    //-   .topnav
+    //-     a(href="/login").loginBtn
+    //-       button.accountBtn Login
+    //-     .accountDropdown
+    //-       button.accountBtn(hidden) Account Name
+    //-       .accountDropdownContext
+    //-         button(disabled) Settings
+    //-         button(class="logOut") Log out
+    //-     a.waves-effect.waves-light.btn.modal-trigger(href='#modal1') Modal
+    //-     //- a#uploadButton(href="javascript:void(0)") Upload Files
+    //-     //- label(class="fileInputWrapper" for="filesInput")
+    //-     //-   i.material-icons cloud_upload
+    //-     //-   input(type='file', name='myfile', multiple='' id="filesInput")
+    //-     //- a.createFolder(href="javascript:void(0)")
+    //-     //-   i.material-icons create_new_folder
+    //-   .topToolbar
+    //-     button.right.refreshButton(title="Refresh Icons")
+    //-       i.material-icons refresh
+    //-     button.right.selectAllVisible(title="Select all visible")
+    //-       i.material-icons select_all
+    //-     .right.displayTypeDropdown(data-display="different")
+    //-       button.changeDisplayType(title="Toggle big tiles")
+    //-         i.material-icons view_comfy
+    //-       ul
+    //-         li
+    //-           button
+    //-             i.material-icons view_quilt
+    //-         li
+    //-           button
+    //-             i.material-icons list
+    //-         li
+    //-           button
+    //-             i.material-icons view_column
+    //-         li
+    //-           button
+    //-             i.material-icons view_module
+    //-         li
+    //-           button
+    //-             i.material-icons view_comfy
+    //-         li
+    //-           button
+    //-             i.material-icons photo
+    //-         li
+    //-           button
+    //-             i.material-icons vertical_split
+    //-         li
+    //-           button
+    //-             i.material-icons dashboard
+    //- //- Materialize Side nav Drawer 
+    ul#slide-out.sidenav
+      li
+        .user-view
+          .background
+            img(src='https://picsum.photos/400/300')
+          a(href='#user')
+            img.circle(src='https://picsum.photos/100/100')
+          a(href='#name')
+            span.white-text.name {UserName}
+          a(href='#email')
+            span.white-text.email {SomeOtherInfo}
+      //- li
+      //-   a(href='#!').btn
+      //-     i.material-icons check
+      //-     | Login
+      li
+        a.logOut.waves-effect(href='#!') Logout
+      li
+        .divider
+      li
+        a.subheader To be added
+      li
+        a.waves-effect(href='#!') Third Link With Waves
+
+    #pathDirWrapper(style="display:none")
+      a#pathGoUp(href="javascript:void(0)")
+          i.material-icons arrow_back
+          .buttonTooltipEnter Up
+      #pathDirText
+        div
+          |Current Directory: 
+          span.pathDir /
+    //- ? This is route for future case when there are more routes ?
+    #itemsRoute
+      #itemListWrapper
+        #itemList(data-display-type="view_comfy")
+          //- TODO delete all of these, and replace with fake, like youtube
+          - var i = 0;
+          while i < 28
+            .itemContainer.file(data-id=i).item-placeholder
+              .itemIcon
+                .img-placeholder
+                //- if i % 2 == 0
+                //-   img.Item_svgIcon(src="./svg/icons/xml.svg", alt="XML icon")
+                //- else
+                //-   img.Item_previewImg(src="http://via.placeholder.com/160x90/c921f0/ffff00", alt="Image preview")
+              .itemInfo
+                .itemInfo_name
+                //- .itemInfo_dateSize
+                //-   .size= i * 2 + " kb"
+                //-   .date 04:30 21/04/1998 
+            - i++;
+        .fixed-action-btn
+          a.btn-floating.btn-large.red
+            i.large.material-icons add
+          ul
+            li
+              a.btn-floating.yellow.darken-1.createFolder
+                i.material-icons create_new_folder
+            li
+              a.btn-floating.green
+                label(class="fileInputWrapper" for="filesInput")
+                  i.material-icons note_add
+                  input(type='file', name='myfile', multiple='' id="filesInput")
+        .visibleWhenSelection
+          a.waves-effect.light-blue.lighten-1.waves-light.btn.modal-trigger(data-target="modalSelection" href='#modalSelection') 
+            i.material-icons.right toc
+            |Selection
+
+      #itemDetails(data-type="folder" data-dir="somepath" data-id="-1")
+        .itemDetails_topbar
+
+        .itemDetails_content
+          img.itemDetails_preview.materialboxed(src="https://via.placeholder.com/350x150", alt="")
+          //- span.itemDetails_directory /in/some/folder 
+          h5.itemDetalis_filename File name
+          //- .itemDetails_size 25kb?
+
+          ul.itemDetails_buttons
+            button.itemDetails_download.waves-effect.waves-light.btn.green
+              i.material-icons.left get_app
+              |Download
+            button.itemDetails_rename.waves-effect.waves-light.btn.disabled Rename
+            button.itemDetails_share.waves-effect.waves-light.btn.disabled Share
+            button.itemDetails_delete.waves-effect.waves-light.btn.red.darken-4 Delete
+    
+    .modalBlackBG#folderModal
+      .modalWindow
+        input#folderDesiredName(type="text" placeholder="Folder name . . .")
+        i.material-icons#folderButton add
+        hr
+        div.folderFinalPath /
+        //- input#folderButton(type="button" value="Create" placeholder="Folder name")
+    //- TODO remake it to look more material
+    //- #floatingGroupOptions 
+    //-   i.material-icons.icon(title="Operate on selection") check_circle
+    //-   .spreader
+    //-   a.DownloadSelected(href="javascript:void(0)" title="Download selected Files and Folders")
+    //-     i.material-icons get_app
+    //-   a.DeleteSelected(href="javascript:void(0)" title="Delete selected Files and Folders")
+    //-     i.material-icons delete
+    //-   a.ExpandSelected(href="javascript:void(0)" title="Show All selected files and folders")
+    //-     i.material-icons list
+    //-   a.CancelSelected(href="javascript:void(0)" title="Cancel selection")
+    //-     i.material-icons close
+    //- materialize modal - for mobile itemDetails
+    // Modal Structure
+    #modalSelection.modal.modal-fixed-footer
+      .modal-content
+        ul.collection
+          li.collection-item File Something
+          li.collection-item File Something
+          li.collection-item File Something
+          li.collection-item File Something
+        //-   <li class="collection-item">Alvin</li>
+        //-   <li class="collection-item">Alvin</li>
+        //-   <li class="collection-item">Alvin</li>
+        //- </ul>
+      .modal-footer
+        a.modal-close.waves-effect.waves-green.btn-flat.green-text Download
+        a.modal-close.waves-effect.waves-yellow.btn-flat(disabled) Share
+        a.modal-close.waves-effect.waves-red.btn-flat.red-text Delete
+
+    #modalItemDetails.modal
+      .modal-content
+      //- .modal-footer
+      //-   a.modal-close.waves-effect.waves-green.btn-flat(href='#!') Agree
+    #modalProgressBarWindow
+      #progress-wrp
+        .progress-bar
+        .status 0%
+        .description Upload Progress
+    #dropzoneUploadOverlay Drag and Drop files to upload them
+    script(src="app.bundle.js" defer)
+    script(src="dev.js" defer)
+    //- Materialize js:
+    script(type="text/javascript" src="./materialize/js/materialize.min.js")
+    //- script(src="test.bundle.js" defer)

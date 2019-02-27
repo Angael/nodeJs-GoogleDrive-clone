@@ -1,0 +1,22 @@
+html
+  head
+    link(href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet")
+    link(href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet")
+    //meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+    script(src='https://code.jquery.com/ui/1.12.1/jquery-ui.min.js')
+    link(rel='stylesheet', type='text/css', href='/main.css')
+
+    script(src='firebase.js')
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
+    script(src='fireBaseInit.js' defer)
+    script(src="login.js" defer)
+  body 
+    br
+    h1(style="text-align:center;") Node FileUpDownLoad
+    <div id="firebaseui-auth-container"></div>
+    <div id="loader">Loading...</div>
