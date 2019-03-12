@@ -1,7 +1,7 @@
 # nodeJs-GoogleDrive-clone
 Node js google drive clone, that uses firebase for authentication, sequelize with postgresql, multer and saves files locally
 
-This is a learning project, that would require serious rewrite in order to be usable.<br>
+This is a learning project, that would require a serious rewrite or many keys changes in order to be usable for anyone else.<br>
 Working app consists of node.js server, postgresql server and firebase project connected to it.
 
 
